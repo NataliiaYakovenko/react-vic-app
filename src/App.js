@@ -1,17 +1,17 @@
 
 import './App.css';
-import NewsItem from "./components/NewsItem/index.jsx";
+import Header from './components/Header/index.jsx';
 
+
+
+//Реалізувати  header який містить логотип і або фото користувача, якщо він залогінився
+//або кнопки login/registration 
 
 function App() {
-  const newItem ={
-    title: 'Some news',
-    body: 'About this news'
+  const isLogin = true
+
+  return <Header isLogin={isLogin}/>;
   }
-  return (
-   <NewsItem news={newItem}/>
-  );
-}
 
 export default App;
 
