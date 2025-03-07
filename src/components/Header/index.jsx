@@ -1,5 +1,8 @@
 import lady from "./lady.jpg";
 import logo from "./logo.jpg";
+import styles from './Header.module.css'
+
+console.log(styles);
 
 function Header(props) {
   const { isLogin } = props;
@@ -18,9 +21,9 @@ function Header(props) {
 
   //return <header>{isLogin && <img src={lady} alt="" /> }</header>
   return (
-    <header>
-      <img src={logo} alt="logo" />
-      {isLogin ?  <img src={lady} alt="lady" /> : 
+    <header className={styles.container}>
+      <img className={styles.logo} src={logo} alt="logo" />
+      {isLogin ?  <img className={styles.userImg} src={lady} alt="lady" /> : 
         <div>
           <button>Log In</button>
           <button>Registration</button>

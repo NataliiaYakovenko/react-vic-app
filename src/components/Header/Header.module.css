@@ -1,0 +1,17 @@
+.container{
+    background-color: rgb(246, 216, 179);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo,.userImg{
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
