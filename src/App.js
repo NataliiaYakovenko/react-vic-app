@@ -1,6 +1,7 @@
 
 import { Component } from "react";
 import ViewPortParams from "./components/ViewPortParams/ViewPortParams";
+import StopWatch from "./components/StopWatch/StopWatch";
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
     return(
     <>
     <button onClick={this.handleClick}>{isVisible ? 'Unmount' : 'Mount'}</button>
-    {isVisible&&<ViewPortParams/>}
+    {isVisible&&<StopWatch/>}
   </>
   )
   }
