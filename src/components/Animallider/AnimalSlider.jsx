@@ -15,6 +15,7 @@ class AnimalSlider extends Component{
 
 
     loadImg=()=>{
+        console.log('load');
         fetch('https://dog.ceo/api/breeds/image/random')
         .then(response=>response.json())
         .then(data=>this.setState({imgSrc:data.message}))
@@ -22,12 +23,17 @@ class AnimalSlider extends Component{
     }
 
     componentDidMount(){
-      this.id = setInterval( this.loadImg,2000)
-   
+      //this.id = setInterval( this.loadImg,2000)
+     this.loadImg()
+    }
+
+    componentDidUpdate(){
+       this.id = setTimeout(this.loadImg,2000)
     }
 
     componentWillUnmount(){
-        clearInterval(this.id)
+        //clearInterval(this.id)
+        clearTimeout(this.id)
     }
 
 

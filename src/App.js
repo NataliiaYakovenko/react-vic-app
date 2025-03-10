@@ -1,6 +1,7 @@
 
 import { Component } from "react";
 import AnimalSlider from "./components/Animallider/AnimalSlider";
+import UsersSlider from "./components/UsersSlider/UsersSlider";
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class App extends Component {
     return(
     <>
     <button onClick={this.handleClick}>{isVisible ? 'Unmount' : 'Mount'}</button>
-    {isVisible&&<AnimalSlider/>}
+    {isVisible&&<UsersSlider/>}
   </>
   )
   }
