@@ -15,7 +15,7 @@ class UsersSlider extends React.Component{
     load=()=>{
         fetch('https://randomuser.me/api/?results=10')
         .then(response => response.json())
-        .then(data => this.state({imgSrc:data.picture.large}))
+        .then(data => this.setState({imgSrc:data.results[0].picture.large}))
         .catch(err => console.log('Error'))
     }
 
@@ -24,6 +24,9 @@ class UsersSlider extends React.Component{
     }
     componentDidUpdate(){
         this.id = setInterval(this.load,2000) 
+    }
+    componentWillUnmount(){
+        clearInterval(this.id)
     }
 
     render(){
