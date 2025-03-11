@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./UsersList.module.css";
+import UsersListItem from "./UsersListItem";
 
 const usersData = [
   { id: 1, firstName: "Nataliia", lastName: "Yakovenko" },
@@ -19,29 +20,30 @@ class UsersList extends React.Component {
   selectUser = (id) => {
     const { users } = this.state;
     const findUser = users.findIndex((u) => {
-    return  u.id === id;
+      return u.id === id;
     });
     const newUsers = [...users];
     newUsers[findUser] = {
       ...users[findUser],
       isSelected: !newUsers[findUser].isSelected,
     };
-    this.setState({users:newUsers})
+    this.setState({ users: newUsers });
   };
 
-
-  mapUsers = (u, id) => {
-    const inlineStyle = {
-      backgroundColor: u.isSelected ? "yellow" : "transparent",
-    };
+  mapUsers = (u) => {
+    const { isLight } = this.props;
     return (
-      <li key={u.id} style={inlineStyle} onClick={() => this.selectUser(u.id)}>
-        {u.firstName} {u.lastName}
-      </li>
+      <UsersListItem
+        key={u.id}
+        user={u}
+        selectUser={this.selectUser}
+        isLight={isLight}
+      />
     );
   };
 
   render() {
+    console.log(this.props);
     const { users } = this.state;
     return <ul>{users.map(this.mapUsers)}</ul>;
   }
