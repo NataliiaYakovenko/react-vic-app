@@ -1,11 +1,12 @@
 
 import LoginForm from "./components/LoginForm/LoginForm";
+import UsersLoader from "./components/UsersLoader/UsersLoader";
 
 
 function App (){
   return(
       <>
-      <LoginForm />
+      <UsersLoader />
       </>
   )
 }
