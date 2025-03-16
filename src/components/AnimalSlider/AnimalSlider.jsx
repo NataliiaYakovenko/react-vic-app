@@ -1,6 +1,6 @@
 import { Component } from "react";
 import dog from './dog.avif';
-import styles from './AnimalSlider.module.css'
+import styles from './AnimalSlider.module.sass'
 
 class AnimalSlider extends Component{
     constructor(props){

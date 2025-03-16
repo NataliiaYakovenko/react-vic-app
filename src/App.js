@@ -1,12 +1,12 @@
 
-import LoginForm from "./components/LoginForm/LoginForm";
-import UsersLoader from "./components/UsersLoader/UsersLoader";
+import AnimalSlider from "./components/AnimalSlider/AnimalSlider";
+
 
 
 function App (){
   return(
       <>
-      <UsersLoader />
+      <AnimalSlider />
       </>
   )
 }
