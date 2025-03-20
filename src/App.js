@@ -1,33 +1,46 @@
-import { createContext } from "react";
+/*
+- App
+  - UserPage
+    - Header
+      - ThemeSwitcher
+    - Main
+    - Footer
+*/
 
-const DataContext = createContext();
+import React, { Component } from "react";
+import CONSTANTS from "./constants";
+import ThemeContext from "./contexts/ThemeContext";
+import UserPage from "./pages/UserPage/UserPage";
+import styles from "./App.module.sass";
+import classNames from "classnames";
 
-function App() {
-  const data = "data007";
+const { LIGHT, DARK, PINK } = CONSTANTS.THEME;
 
-  return (
-    <DataContext.Provider value={data}>
-      <Child data={data} />
-    </DataContext.Provider>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      theme: PINK,
+    };
+  }
+
+  render() {
+    const { theme } = this.state;
+    const pageClassName = classNames({
+      [styles.lightTheme]: theme === LIGHT,
+      [styles.darkTheme]: theme === DARK,
+      [styles.pinkTheme]: theme === PINK,
+    });
+
+    return (
+      <ThemeContext.Provider value={theme}>
+        <div className={pageClassName}>
+          <UserPage />
+        </div>
+      </ThemeContext.Provider>
+    );
+  }
 }
 
 export default App;
-
-function Child() {
-  return (
-    <div>
-      <ChildChild />
-    </div>
-  );
-}
-
-function ChildChild() {
-  return (
-    <DataContext.Consumer>
-      {(data) => {
-        return <div>I am ChildChild: {data}</div>;
-      }}
-    </DataContext.Consumer>
-  );
-}
