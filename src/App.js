@@ -1,35 +1,33 @@
-import DataProvider from "./components/DataProvider/DataProvider";
+import { createContext } from "react";
 
-const PhonesLoadedList = (props) => {
-  const { data: phones, isFetching, error } = props.phonesData;
-  return (
-    <>
-      {isFetching && <div>Loading...</div>}
-      {error && <div>ERROR</div>}
-      <ol>
-        {phones.map((p) => (
-          <li key={p.id}>
-            {p.brand} {p.model}: {p.price}
-          </li>
-        ))}
-      </ol>
-    </>
-  );
-};
+const DataContext = createContext();
 
 function App() {
+  const data = "data007";
+
   return (
-    // <DataProvider
-    //   fileName="/data/phones.json"
-    //   render={(data) => <PhonesLoadedList phonesData={data}/>}
-    // />
-   <DataProvider fileName="/data/phones.json">{
-    (data) => <PhonesLoadedList phonesData={data}/>
-
-   }</DataProvider>
-
-    
-  )
+    <DataContext.Provider value={data}>
+      <Child data={data} />
+    </DataContext.Provider>
+  );
 }
 
 export default App;
+
+function Child() {
+  return (
+    <div>
+      <ChildChild />
+    </div>
+  );
+}
+
+function ChildChild() {
+  return (
+    <DataContext.Consumer>
+      {(data) => {
+        return <div>I am ChildChild: {data}</div>;
+      }}
+    </DataContext.Consumer>
+  );
+}
