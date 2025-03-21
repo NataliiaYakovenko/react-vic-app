@@ -1,5 +1,6 @@
 import React from "react";
 import ThemeContext from "../../contexts/ThemeContext";
+import CONSTANTS from "../../constants";
 
 function UserPage() {
   return (
@@ -23,11 +24,22 @@ function Header() {
   );
 }
 
+const { LIGHT, DARK, PINK } = CONSTANTS.THEME;
 function ThemeSwitcher() {
   return (
     <ThemeContext.Consumer>
-      {(theme) => {
-        return <div>{theme}</div>;
+              {/*3 step*/}
+    {({theme, setTheme}) => {
+
+       //4 step
+      const changeTheme =({target:{value}})=>{
+           return setTheme(value)
+      }
+        return <select value={theme} onChange={changeTheme}>
+          <option value={LIGHT}>Light</option>
+          <option value={DARK}>Dark</option>
+          <option value={PINK}>Pink</option>
+          </select>
       }}
     </ThemeContext.Consumer>
   );

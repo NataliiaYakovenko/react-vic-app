@@ -21,9 +21,17 @@ class App extends Component {
     super(props);
 
     this.state = {
-      theme: PINK,
+      theme: DARK,
     };
   }
+//1 step
+   setTheme=(newTheme)=>{
+      this.setState({
+        theme: newTheme,
+      })
+   }
+
+
 
   render() {
     const { theme } = this.state;
@@ -34,7 +42,8 @@ class App extends Component {
     });
 
     return (
-      <ThemeContext.Provider value={theme}>
+                                                         //2
+      <ThemeContext.Provider value={{theme: theme,setTheme: this.setTheme}}>
         <div className={pageClassName}>
           <UserPage />
         </div>
