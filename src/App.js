@@ -24,14 +24,28 @@ class App extends Component {
       theme: DARK,
     };
   }
-//1 step
-   setTheme=(newTheme)=>{
-      this.setState({
-        theme: newTheme,
-      })
-   }
+  //1 step
+  setTheme = (newTheme) => {
+    this.setState({
+      theme: newTheme,
+    });
+  };
 
+  componentDidMount() {
+    const storageTheme = window.localStorage.getItem("theme");
 
+    if (storageTheme) {
+      this.setState({ theme: storageTheme });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { theme } = this.state;
+
+    if (theme !== prevState.theme) {
+      window.localStorage.setItem("theme", theme);
+    }
+  }
 
   render() {
     const { theme } = this.state;
@@ -42,8 +56,8 @@ class App extends Component {
     });
 
     return (
-                                                         //2
-      <ThemeContext.Provider value={{theme: theme,setTheme: this.setTheme}}>
+      //2
+      <ThemeContext.Provider value={{ theme: theme, setTheme: this.setTheme }}>
         <div className={pageClassName}>
           <UserPage />
         </div>
