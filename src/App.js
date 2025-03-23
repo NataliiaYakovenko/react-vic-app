@@ -1,10 +1,10 @@
 import React from 'react'
-import CounterHuk from './components/CounterHuk/CounterHuk'
+import ClickerCounterHuk from './components/ClickerCounterHuk/ClickerCounterHuk'
 
 function App() {
   return (
     <div>
-      <CounterHuk/>
+      <ClickerCounterHuk/>
     </div>
   )
 }
