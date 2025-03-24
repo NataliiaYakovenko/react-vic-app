@@ -1,10 +1,13 @@
 import React from 'react'
-import ClickerCounterHuk from './components/ClickerCounterHuk/ClickerCounterHuk'
+import StopWatchHuk from './components/StopWatchHuk/StopWatchHuk'
+import StopWatch from './components/StopWatch/StopWatch'
+
 
 function App() {
   return (
     <div>
-      <ClickerCounterHuk/>
+      <StopWatch/>
+      <StopWatchHuk/>
     </div>
   )
 }
