@@ -1,13 +1,26 @@
-import React from 'react'
-import UserLoaderHuk from './components/UserLoaderHuk/UserLoaderHuk'
-import UseLayoutEffectHuk from './components/UseLayoutEffectHuk/UseLayoutEffectHuk'
+import React, { createContext, useContext, useState } from "react";
 
 
+const ThemeContext = createContext();
 
 function App() {
-  return  <UseLayoutEffectHuk/>
+  const [theme, setTheme] = useState("light");
 
-  
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Child />
+    </ThemeContext.Provider>
+  );
 }
 
-export default App
+export default App;
+
+function Child() {
+  return <ChildChild />;
+}
+
+function ChildChild() {
+const theme = useContext(ThemeContext)
+
+  return <div>{theme}</div>;
+}
