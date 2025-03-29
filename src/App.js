@@ -1,15 +1,12 @@
 import React from 'react'
-import StopWatchHuk from './components/StopWatchHuk/StopWatchHuk'
-import StopWatch from './components/StopWatch/StopWatch'
+import UserLoaderHuk from './components/UserLoaderHuk/UserLoaderHuk'
+
 
 
 function App() {
-  return (
-    <div>
-      <StopWatch/>
-      <StopWatchHuk/>
-    </div>
-  )
+  return  <UserLoaderHuk/>
+
+  
 }
 
 export default App
