@@ -1,0 +1,44 @@
+.messagesPageContainer {
+    background-color: darkslateblue;
+  }
+  
+  .messagesContainer,
+  .formContainer {
+    width: 100%;
+    min-width: 300px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px;
+  }
+  
+  .messagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .messagesContainer > li {
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  /* візуальна емуляція повідомлень від різних співрозмовників */
+  .messagesContainer > li:nth-child(odd) {
+    align-self: start;
+  }
+  
+  .messagesContainer > li:nth-child(even) {
+    align-self: end;
+  }
+  
+  .formContainer {
+  }
+  
+  .messageInput {
+    width: 100%;
+    padding: 15px;
+    border-radius: 100px;
+  }
+  
