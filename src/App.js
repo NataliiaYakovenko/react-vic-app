@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import Counter2 from './components/Counter2/Counter2';
+import React, { useState } from "react";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      step: 1,
-    };
-  }
-
-  changeStep = ({ target: { value } }) => {
-    this.setState({ step: Number(value) });
-  };
-
-  render() {
-    const { step } = this.state;
-
-    return (
-      <>
-        <input type="number" value={step} onChange={this.changeStep} />
-        <Counter2 step={step} />
-      </>
-    );
-  }
+function App() {
+  const InnerComponentWithNewProp = withNewProp(InnerComponent);
+  return <InnerComponentWithNewProp ownProp='ownProp'/>;
 }
 
 export default App;
+
+function withNewProp(WrappedComponent) {
+  function WrappedComponentWithNewProp(props) {
+    const [someState, useSomeState] = useState("some value");
+    return <WrappedComponent newProp={someState} {...props}/>;
+  }
+  return WrappedComponentWithNewProp;
+}
+
+function InnerComponent(props) {
+  return (
+    <div>
+      Props:
+      {props.ownProp ?? " ownProp is missing"}
+      {props.newProp ?? " newProp is missing"}
+    </div>
+  );
+}
