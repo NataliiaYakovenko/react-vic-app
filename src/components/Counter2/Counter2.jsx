@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
-class Counter2 extends Component {
+class Counter2 extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -9,10 +9,22 @@ class Counter2 extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    const { count } = this.state;
-    return count !== nextState.count;
-  }
+  // Якщо повертає true, то перерендер потрібен
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   const { count } = this.state;
+  //   return count !== nextState.count;
+  // }
+
+  // По дефолту для Component shouldComponentUpdate повертає true
+
+  // PureComponent містить у собі реалізацію shouldComponentUpdate
+  // Здійснює тільки поверхневе порівняння стану та пропсів
+  // Тут це виглядатиме так:
+  // shouldComponentUpdate (nexpProps, nextState) {
+  //   const {count} = this.state;
+  //   const {step} = this.props;
+  //   return count !== nextState.count || step !== nextProps.step;
+  // }
 
   increment = () => {
     const { count } = this.state;
