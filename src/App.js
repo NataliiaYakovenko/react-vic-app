@@ -1,5 +1,6 @@
 import {
   Link,
+  NavLink,
   Route,
   BrowserRouter as Router,
   Routes,
@@ -7,12 +8,19 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 
+const linkStyle = ({ isActive }) =>
+  isActive ? { border: "1px solid pink" } : {};
+
 function App() {
   return (
     <Router>
-      <Link to="/">Home</Link>
+      <NavLink to="/" style={linkStyle}>
+        Home
+      </NavLink>
       <br />
-      <Link to="/about">About</Link>
+      <NavLink to="/about" style={linkStyle}>
+        About
+      </NavLink>
 
       <Routes>
         <Route path="/" element={<Home />} />
