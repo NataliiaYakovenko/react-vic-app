@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Link, Switch, Route,useHistory } from "react-router-dom";
+
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
       </nav>
 
       <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+
         <Route path="/about">
           <About />
         </Route>
@@ -33,9 +39,10 @@ function App() {
           <Contacts />
         </Route>
 
-        <Route path="/">
-          <Home />
+        <Route path="*">
+          <NotFound />
         </Route>
+
       </Switch>
     </Router>
   );
@@ -57,4 +64,14 @@ function Components() {
 
 function Contacts() {
   return <div>Contacts</div>;
+}
+
+function NotFound(){
+    const history = useHistory()
+    useEffect(()=>{
+      setTimeout(()=>history.push('/'), 4000
+      )
+    })
+
+  return <div>404 NotFound</div>
 }
