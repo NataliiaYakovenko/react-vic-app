@@ -1,26 +1,60 @@
-import React, { createContext, useContext, useState } from "react";
-
-
-const ThemeContext = createContext();
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 function App() {
-  const [theme, setTheme] = useState("light");
-
   return (
-    <ThemeContext.Provider value={theme}>
-      <Child />
-    </ThemeContext.Provider>
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/components">Components</Link>
+          </li>
+          <li>
+            <Link to="/contacts">Contacts</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <Switch>
+        <Route path="/about">
+          <About />
+        </Route>
+
+        <Route path="/components">
+          <Components />
+        </Route>
+
+        <Route path="/contacts">
+          <Contacts />
+        </Route>
+
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
 export default App;
 
-function Child() {
-  return <ChildChild />;
+function Home() {
+  return <div>Home</div>;
 }
 
-function ChildChild() {
-const theme = useContext(ThemeContext)
+function About() {
+  return <div>About</div>;
+}
 
-  return <div>{theme}</div>;
+function Components() {
+  return <div>Components</div>;
+}
+
+function Contacts() {
+  return <div>Contacts</div>;
 }
