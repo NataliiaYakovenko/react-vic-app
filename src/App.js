@@ -1,6 +1,7 @@
 import {
   Link,
   NavLink,
+  Outlet,
   Route,
   BrowserRouter as Router,
   Routes,
@@ -14,18 +15,13 @@ const linkStyle = ({ isActive }) =>
 function App() {
   return (
     <Router>
-      <NavLink to="/" style={linkStyle}>
-        Home
-      </NavLink>
-      <br />
-      <NavLink to="/about" style={linkStyle}>
-        About
-      </NavLink>
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/" element={<BasePage />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/partnerspage/*" element={<PartnersPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/*" element={<NotFound />} />
+        </Route>
       </Routes>
     </Router>
   );
@@ -36,12 +32,79 @@ function App() {
 
 export default App;
 
+function BasePage() {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <footer>Footer</footer>
+    </>
+  );
+}
+
+function Header() {
+  return (
+    <header>
+      <h1>My App</h1>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/" style={linkStyle}>
+              Home
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/partnerspage" style={linkStyle}>
+              PartnersPage
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/about" style={linkStyle}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
 function Home() {
   return <div>Home</div>;
 }
 
 function About() {
   return <div>About</div>;
+}
+
+function PartnersPage() {
+  return (
+    <div>
+      <h2>PartnersPage</h2>
+      <nav>
+        <ol>
+          <li>
+            <NavLink to="/partnerspage/partner1" style={linkStyle}>
+              Partner1
+            </NavLink>
+          </li>
+          <br/>
+          <li>
+            <NavLink to="/partnerspage/partner2" style={linkStyle}>
+              Partner2
+            </NavLink>
+          </li>
+        </ol>
+      </nav>
+      <Routes>
+      <Route path='partner1' element={<div>Partner1</div>}/>
+      <Route path='partner2' element={<div>Partner2</div>}/>
+
+      </Routes>
+    </div>
+  );
 }
 
 function NotFound() {
