@@ -1,6 +1,14 @@
 import { useEffect } from "react";
-import { BrowserRouter as Router, Link, Switch, Route,useHistory } from "react-router-dom";
-
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
+import Counter from "./components/Counter/index";
+import StopWatch from "./components/StopWatch/StopWatch";
+import { useRouteMatch } from "react-router-dom/cjs/react-router-dom";
 
 function App() {
   return (
@@ -42,7 +50,6 @@ function App() {
         <Route path="*">
           <NotFound />
         </Route>
-
       </Switch>
     </Router>
   );
@@ -58,20 +65,48 @@ function About() {
   return <div>About</div>;
 }
 
+//components/counter
+//components/stopwatch
 function Components() {
-  return <div>Components</div>;
+  const { path, url } = useRouteMatch();
+
+  return (
+    <div>
+      <ol>
+        <li>
+          <Link to={`${url}/counter`}>Counter</Link>
+        </li>
+        <li>
+          <Link to={`${url}/stopwatch`}>StopWatch</Link>
+        </li>
+
+        <Switch>
+          <Route path={`${path}/counter`}>
+            <Counter />
+          </Route>
+
+          <Route path={`${path}/stopwatch`}>
+            <StopWatch />
+          </Route>
+
+          <Route path={`${path}/*`}>
+            <NotFound />
+          </Route>
+        </Switch>
+      </ol>
+    </div>
+  );
 }
 
 function Contacts() {
   return <div>Contacts</div>;
 }
 
-function NotFound(){
-    const history = useHistory()
-    useEffect(()=>{
-      setTimeout(()=>history.push('/'), 4000
-      )
-    })
+function NotFound() {
+  const history = useHistory();
+  useEffect(() => {
+    setTimeout(() => history.push("/"), 4000);
+  });
 
-  return <div>404 NotFound</div>
+  return <div>404 NotFound</div>;
 }
