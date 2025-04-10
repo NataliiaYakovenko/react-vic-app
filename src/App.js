@@ -1,26 +1,8 @@
-import React, { useState } from "react";
+import PhonesLoadedListWithLoadingData from './HOCs/PhonesLoadedList';
 
+// HOC - компонент вищого порядку (функція, яка приймає і повертає компонент)
 function App() {
-  const InnerComponentWithNewProp = withNewProp(InnerComponent);
-  return <InnerComponentWithNewProp ownProp='ownProp'/>;
+  return <PhonesLoadedListWithLoadingData url="/data/phones.json" />;
 }
 
 export default App;
-
-function withNewProp(WrappedComponent) {
-  function WrappedComponentWithNewProp(props) {
-    const [someState, useSomeState] = useState("some value");
-    return <WrappedComponent newProp={someState} {...props}/>;
-  }
-  return WrappedComponentWithNewProp;
-}
-
-function InnerComponent(props) {
-  return (
-    <div>
-      Props:
-      {props.ownProp ?? " ownProp is missing"}
-      {props.newProp ?? " newProp is missing"}
-    </div>
-  );
-}
