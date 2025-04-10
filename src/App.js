@@ -1,8 +1,9 @@
-import PhonesLoadedListWithLoadingData from './HOCs/PhonesLoadedList';
+import LoginForm from './components/LoginForm/LoginForm';
+
 
 // HOC - компонент вищого порядку (функція, яка приймає і повертає компонент)
 function App() {
-  return <PhonesLoadedListWithLoadingData url="/data/phones.json" />;
+  return <LoginForm />;
 }
 
 export default App;
