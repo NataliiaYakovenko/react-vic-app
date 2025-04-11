@@ -1,10 +1,7 @@
-import { Formik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
-import * as yup from "yup";
+import { USER_VALIDATION_SCHEMA } from "../../utils/validateYup";
 
-const USER_VALIDATION_SCHEMA = yup.object({
-  firstName: yup.string().trim().min(2).max(20).required(),
-});
 
 function UserInfoForm() {
   const userInitialValues = { firstName: "" };
@@ -22,21 +19,19 @@ function UserInfoForm() {
       {(formikProps) => {
         console.log(formikProps);
         return (
-          <form onSubmit={formikProps.handleSubmit} onReset={formikProps.handleReset}>
-            <input
+          <Form>
+            <Field
               type="text"
               placeholder="Your name"
               autoFocus
               name="firstName"
-              value={formikProps.values.firstName}
-              onChange={formikProps.handleChange}
             />
-            {formikProps.errors.firstName && (
-              <div> {formikProps.errors.firstName}</div>
-            )}
+           <ErrorMessage name='firstName'/>
             <button type="submit">Save</button>
-            <button type="reset" disabled={!formikProps.dirty}>Reset</button>
-          </form>
+            <button type="reset" disabled={!formikProps.dirty}>
+              Reset
+            </button>
+          </Form>
         );
       }}
     </Formik>

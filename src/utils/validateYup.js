@@ -1,5 +1,12 @@
 import * as yup from "yup";
 
+
+export const USER_VALIDATION_SCHEMA = yup.object({
+  firstName: yup.string().trim().min(2).max(20).required(),
+});
+
+
+//-----------------------------------------------------------------
 const USER_SCHEMA = yup.object({
     name: yup
       .string()
