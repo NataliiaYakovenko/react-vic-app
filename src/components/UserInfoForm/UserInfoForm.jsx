@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
 import { USER_VALIDATION_SCHEMA } from "../../utils/validateYup";
 
-
 function UserInfoForm() {
   const userInitialValues = { firstName: "" };
   const handleSubmit = (values, formikBag) => {
@@ -20,13 +19,16 @@ function UserInfoForm() {
         console.log(formikProps);
         return (
           <Form>
-            <Field
-              type="text"
-              placeholder="Your name"
-              autoFocus
-              name="firstName"
-            />
-           <ErrorMessage name='firstName'/>
+            <label>
+                <span>Name</span>
+              <Field
+                type="text"
+                placeholder="Your name"
+                autoFocus
+                name="firstName"
+              />
+            <ErrorMessage name="firstName" component="div" />
+            </label>
             <button type="submit">Save</button>
             <button type="reset" disabled={!formikProps.dirty}>
               Reset
