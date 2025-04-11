@@ -1,9 +1,9 @@
-import LoginForm from './components/LoginForm/LoginForm';
+import UserInfoForm from './components/UserInfoForm/UserInfoForm';
 
 
 // HOC - компонент вищого порядку (функція, яка приймає і повертає компонент)
 function App() {
-  return <LoginForm />;
+  return <UserInfoForm />;
 }
 
 export default App;
