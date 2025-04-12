@@ -12,7 +12,7 @@ export const CONTACT_VALIDATION_SCHEMA = yup.object({
     .matches(/^\+\d{12}$/, "Phone must correspond patern +000000000000 ")
     .required(),
   email: yup.string().email(),
-  birthday: yup.data().max(new Date())
+  birthday: yup.date().max(new Date())
 });
 
 //-----------------------------------------------------------------
