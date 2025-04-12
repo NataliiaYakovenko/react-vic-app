@@ -1,9 +1,9 @@
-import UserInfoForm from './components/UserInfoForm/UserInfoForm';
+import ContactPage from './pages/ContactPage/ContactPage';
 
 
 // HOC - компонент вищого порядку (функція, яка приймає і повертає компонент)
 function App() {
-  return <UserInfoForm />;
+  return <ContactPage />;
 }
 
 export default App;
