@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { CONTACT_VALIDATION_SCHEMA } from "../../../utils/validateYup";
-
+import styles from "./ContactForm.module.sass";
+import classNames from "classnames/bind";
 
 function ContactForm() {
   const initialValues = {
@@ -23,30 +24,73 @@ function ContactForm() {
       validationSchema={CONTACT_VALIDATION_SCHEMA}
     >
       {(formikProps) => {
+        const nameClassNames = classNames(styles.input, {
+          [styles.valid]: !formikProps.errors.name && formikProps.touched.name,
+          [styles.invalid]: formikProps.errors.name && formikProps.touched.name,
+        });
+
+        const phoneClassNames = classNames(styles.input, {
+          [styles.valid]:
+            !formikProps.errors.phone && formikProps.touched.phone,
+          [styles.invalid]:
+            formikProps.errors.phone && formikProps.touched.phone,
+        });
         return (
-          <Form>
-            <label>
+          <Form className={styles.form}>
+            <label className={styles.lable}>
               <span>Name:</span>
-              <Field type='text' name='name' placeholder='Your name' autoFocus/>
-              <ErrorMessage name='name' component='span'/>
+              <Field
+                className={nameClassNames}
+                type="text"
+                name="name"
+                placeholder="Your name"
+                autoFocus
+              />
+              <ErrorMessage
+                className={styles.error}
+                name="name"
+                component="span"
+              />
             </label>
 
-            <label>
+            <label className={styles.lable}>
               <span>Phone Number:</span>
-              <Field type='tel' name='phone' placeholder='+380 00 000 00 00' />
-              <ErrorMessage name='phone'component='span'/>
+              <Field
+                className={phoneClassNames}
+                type="tel"
+                name="phone"
+                placeholder="+380 00 000 00 00"
+              />
+              <ErrorMessage
+                className={styles.error}
+                name="phone"
+                component="span"
+              />
             </label>
 
-            <label>
+            <label className={styles.lable}>
               <span>Email:</span>
-              <Field type='email' name='email' placeholder='email@gmail.com'/>
-              <ErrorMessage name='email' component='span'/>
+              <Field
+                type="email"
+                name="email"
+                placeholder="email@gmail.com"
+              />
+              <ErrorMessage
+                className={styles.error}
+                name="email"
+                component="span"
+              />
             </label>
 
-            <label>
+            <label className={styles.lable}>
               <span>Birthday:</span>
-              <Field type='date' name='birthday' />
-              <ErrorMessage name='birthday' component='span'/>
+              <Field
+               type="date" name="birthday" />
+              <ErrorMessage
+                className={styles.error}
+                name="birthday"
+                component="span"
+              />
             </label>
 
             <button type="submit">Save</button>
